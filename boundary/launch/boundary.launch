@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="world" default="" doc="($find boundary)/worlds/undersim_1sgood.wbt"/>
+  <arg name="mode" default="realtime" doc="Startup mode"/>
+  <arg name="no_gui" default="false" doc="Start Webots with minimal GUI"/>
+  <node name="boundary" pkg="boundary" type="boundary.py" args="--world=$(arg world) --mode=$(arg mode) --no-gui=$(arg no_gui)" required="true"/>
+</launch>

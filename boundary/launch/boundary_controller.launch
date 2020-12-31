@@ -1,0 +1,13 @@
+<launch>
+  <!-- start Webots -->
+  <arg name="no_gui" default="false," doc="Start Webots with minimal GUI"/>
+
+
+  <arg name="auto_close" default="false" doc="Startup mode"/>
+  <env name="LD_LIBRARY_PATH" value="$(env LD_LIBRARY_PATH):$(env WEBOTS_HOME)/lib/controller"/>
+  <env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python38" if="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />
+  <arg name="world" default="" doc="($find boundary)/worlds/undersim_1sgood.wbt"/>
+  <arg name="mode" default="realtime" doc="Startup mode"/>
+  
+  <node name="boundary" pkg="boundary" type="boundary.py" args="--world=$(arg world) --mode=$(arg mode) --no-gui=$(arg no_gui)" required="true"/>
+</launch>
